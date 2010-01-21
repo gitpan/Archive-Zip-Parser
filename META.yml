@@ -1,0 +1,38 @@
+---
+name: Archive-Zip-Parser
+version: v0.0.0_1
+author:
+  - 'Alan Haggai Alavi <haggai@cpan.org>'
+abstract: Parser for .ZIP archives
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Carp: 0
+  Data::ParseBinary: 0
+  Test::Exception: 0
+  Test::More: 0
+  autodie: 0
+  version: 0
+configure_requires:
+  Module::Build: 0.35
+provides:
+  Archive::Zip::Parser:
+    file: lib/Archive/Zip/Parser.pm
+    version: v0.0.0_1
+  Archive::Zip::Parser::CentralDirectoryEnd:
+    file: lib/Archive/Zip/Parser/CentralDirectoryEnd.pm
+  Archive::Zip::Parser::Entry:
+    file: lib/Archive/Zip/Parser/Entry.pm
+  Archive::Zip::Parser::Entry::CentralDirectory:
+    file: lib/Archive/Zip/Parser/Entry/CentralDirectory.pm
+  Archive::Zip::Parser::Entry::Header:
+    file: lib/Archive/Zip/Parser/Entry/Header.pm
+  Archive::Zip::Parser::Entry::LocalFileHeader:
+    file: lib/Archive/Zip/Parser/Entry/LocalFileHeader.pm
+  Archive::Zip::Parser::Exception:
+    file: lib/Archive/Zip/Parser/Exception.pm
+generated_by: Module::Build version 0.35
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4

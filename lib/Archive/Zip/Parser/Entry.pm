@@ -5,6 +5,7 @@ use strict;
 
 use Archive::Zip::Parser::Entry::LocalFileHeader;
 use Archive::Zip::Parser::Entry::CentralDirectory;
+use Archive::Zip::Parser::Entry::DataDescriptor;
 
 sub get_local_file_header {
     my $self = shift;
@@ -18,6 +19,21 @@ sub get_central_directory {
       'Archive::Zip::Parser::Entry::CentralDirectory';
 }
 
+sub get_data_descriptor {
+    my $self = shift;
+
+    if ( defined $self->{'_data_descriptor'} ) {
+        return bless $self->{'_data_descriptor'},
+          'Archive::Zip::Parser::Entry::DataDescriptor';
+    }
+    return;
+}
+
+sub get_file_data {
+    my $self = shift;
+    return $self->{'_file_data'};
+}
+
 1;
 __END__
 
@@ -28,7 +44,7 @@ central directory and file data of .ZIP archive files.
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser::Entry version 0.0.0_02
+This document describes Archive::Zip::Parser::Entry version 0.0.0_03
 
 
 =head1 SYNOPSIS
@@ -59,6 +75,15 @@ object.
 
 Returns L<central directory|Archive::Zip::Parser::Entry::CentralDirectory>
 object.
+
+=item C<< get_data_descriptor() >>
+
+Returns L<data descriptor|Archive::Zip::Parser::Entry::DataDescriptor>
+object.
+
+=item C<< get_file_data() >>
+
+Returns binary file data.
 
 =back
 
@@ -114,6 +139,23 @@ Alan Haggai Alavi  C<< <haggai@cpan.org> >>
 
 Thanks to Shain Padmajan (L<http://shain.co.in/>) for helping me shorten method
 names.
+
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Archive::Zip::Parser>
+
+=item * L<Archive::Zip::Parser::CentralDirectoryEnd>
+
+=item * L<Archive::Zip::Parser::Entry::CentralDirectory>
+
+=item * L<Archive::Zip::Parser::Entry::DataDescriptor>
+
+=item * L<Archive::Zip::Parser::Entry::LocalFileHeader>
+
+=back
 
 
 =head1 LICENCE AND COPYRIGHT

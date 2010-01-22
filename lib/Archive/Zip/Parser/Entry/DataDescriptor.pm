@@ -1,4 +1,4 @@
-package Archive::Zip::Parser::Entry::LocalFileHeader;
+package Archive::Zip::Parser::Entry::DataDescriptor;
 
 use warnings;
 use strict;
@@ -10,12 +10,12 @@ __END__
 
 =head1 NAME
 
-Archive::Zip::Parser::Entry::LocalFileHeader - Provides methods to access local
-file header fields.
+Archive::Zip::Parser::Entry::DataDescriptor - Provides methods to access
+central directory fields.
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser::Entry::LocalFileHeader version 0.0.0_03
+This document describes Archive::Zip::Parser::Entry::DataDescriptor version 0.0.0_03
 
 
 =head1 SYNOPSIS
@@ -26,73 +26,17 @@ This document describes Archive::Zip::Parser::Entry::LocalFileHeader version 0.0
       = Archive::Zip::Parser->new( { file_name => 'secret_files.zip' } );
     $parser->parse();
     my $entry = $parser->get_entry(3);
-    my $local_file_header = $entry->get_local_file_header();
-    my $file_name = $local_file_header->get_file_name();
+    my $data_descriptor = $entry->get_data_descriptor();
+    my $crc_32 = $data_descriptor->get_crc_32();
 
 
 =head1 DESCRIPTION
 
-Provides methods to access local file header fields.
+Provides methods to access central directory fields.
 
 =head1 INTERFACE
 
 =over 4
-
-=item C<< get_signature() >>
-
-Returns local file header signature in hexadecimal (04034b50).
-
-=item C<< get_version_needed() >>
-
-Returns the version needed to extract.
-
-=item C<< get_version_needed( { describe => 1 } ) >>
-
-Returns description of the minimum feature version.
-
-=item C<< get_gp_bit() >>
-
-Returns a list of general purpose bit flags.
-
-=item C<< get_gp_bit( { describe => 1 } ) >>
-
-Returns a list of general purpose bit flag descriptions.
-
-=item C<< get_compression_method() >>
-
-Returns an integer representing the compression method.
-
-=item C<< get_compression_method( { describe => 1 } ) >>
-
-Returns the compression method.
-
-=item C<< get_last_mod_time() >>
-
-Returns a hash consisting of keys:
-
-=over 4
-
-=item * C<hour>
-
-=item * C<minute>
-
-=item * C<second>
-
-=back
-
-=item C<< get_last_mod_date() >>
-
-Returns a hash consisting of keys:
-
-=over 4
-
-=item * C<year>
-
-=item * C<month>
-
-=item * C<day>
-
-=back
 
 =item C<< get_crc_32() >>
 
@@ -106,45 +50,12 @@ Returns compressed size in bytes.
 
 Returns uncompressed size in bytes.
 
-=item C<< get_file_name_length() >>
-
-Returns file name length in bytes.
-
-=item C<< get_extra_field_length() >>
-
-Returns extra field length in bytes.
-
-=item C<< get_file_name() >>
-
-Returns file name.
-
-=item C<< get_extra_field() >>
-
-Returns a hash of extra fields:
-
-=over 4
-
-=item * C<< 'id' => 'data' >>
-
-=back
-
-=item C<< get_extra_field( { describe => 1 } ) >>
-
-Returns a hash of extra fields with C<id>s substituted with corresponding
-descriptions wherever possible:
-
-=over 4
-
-=item * C<< 'id description' => 'data' >>
-
-=back
-
 =back
 
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-Archive::Zip::Parser::Entry::LocalFileHeader requires no configuration files or
+Archive::Zip::Parser::Entry::DataDescriptor requires no configuration files or
 environment variables.
 
 
@@ -208,7 +119,7 @@ names.
 
 =item * L<Archive::Zip::Parser::Entry::CentralDirectory>
 
-=item * L<Archive::Zip::Parser::Entry::DataDescriptor>
+=item * L<Archive::Zip::Parser::Entry::LocalFileHeader>
 
 =back
 

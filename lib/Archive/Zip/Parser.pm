@@ -9,7 +9,7 @@ use Archive::Zip::Parser::Entry;
 use Archive::Zip::Parser::CentralDirectoryEnd;
 use base qw( Archive::Zip::Parser::Exception );
 
-use version; our $VERSION = qv( '0.0.0_02' );
+use version; our $VERSION = qv( '0.0.0_03' );
 
 sub new {
     my ( $class, $arg_ref ) = @_;
@@ -55,17 +55,7 @@ sub parse {
 
     my @parsed_entry_struct;
     while (1) {
-        my $signature_struct = 
-            Struct(
-                '_signature_struct',
-                Peek(
-                    UBInt32('_signature')
-                ),
-            );
-        my $parsed_signature_struct
-          = $signature_struct->parse( $self->{'_bit_stream'} );
-        my $signature = pack 'N', $parsed_signature_struct->{'_signature'};
-        last if $signature ne "PK\x03\x04";
+        last if $self->_check_signature('04034b50');
 
         my $local_file_header_struct
             = Struct(
@@ -138,17 +128,7 @@ sub parse {
 
     my $entry_count = 0;
     while (1) {
-        my $signature_struct = 
-            Struct(
-                '_signature_struct',
-                Peek(
-                    UBInt32('_signature')
-                ),
-            );
-        my $parsed_signature_struct
-          = $signature_struct->parse( $self->{'_bit_stream'} );
-        my $signature = pack 'N', $parsed_signature_struct->{'_signature'};
-        last if $signature ne "PK\x01\x02";
+        last if $self->_check_signature('02014b50');
 
         my $central_directory_struct
             = Struct(
@@ -221,17 +201,7 @@ sub parse {
         $entry_count++;
     }
 
-    my $signature_struct = 
-        Struct(
-            '_signature_struct',
-            Peek(
-                UBInt32('_signature')
-            ),
-        );
-    my $parsed_signature_struct
-      = $signature_struct->parse( $self->{'_bit_stream'} );
-    my $signature = pack 'N', $parsed_signature_struct->{'_signature'};
-    last if $signature ne "PK\x05\x06";
+    last if $self->_check_signature('06054b50');
 
     my $central_directory_end_struct
         = Struct(
@@ -292,6 +262,25 @@ sub get_central_directory_end {
       'Archive::Zip::Parser::CentralDirectoryEnd';
 }
 
+sub _check_signature {
+    my ( $self, $next_signature ) = @_;
+
+    my $signature_struct = 
+        Struct(
+            '_signature_struct',
+            Peek(
+                ULInt32('_signature')
+            ),
+        );
+    my $parsed_signature_struct
+      = $signature_struct->parse( $self->{'_bit_stream'} );
+    my $signature = unpack( 'H*', pack( 'N', $parsed_signature_struct->{'_signature'} ) );
+    if ( $signature ne $next_signature ) {
+        return 1;
+    }
+    return;
+}
+
 1;
 __END__
 
@@ -301,7 +290,7 @@ Archive::Zip::Parser - Parser for .ZIP archives
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser version 0.0.0_02
+This document describes Archive::Zip::Parser version 0.0.0_03
 
 
 =head1 SYNOPSIS
@@ -419,6 +408,23 @@ Alan Haggai Alavi  C<< <haggai@cpan.org> >>
 
 Thanks to Shain Padmajan (L<http://shain.co.in/>) for helping me shorten method
 names.
+
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Archive::Zip::Parser::CentralDirectoryEnd>
+
+=item * L<Archive::Zip::Parser::Entry>
+
+=item * L<Archive::Zip::Parser::Entry::CentralDirectory>
+
+=item * L<Archive::Zip::Parser::Entry::DataDescriptor>
+
+=item * L<Archive::Zip::Parser::Entry::LocalFileHeader>
+
+=back
 
 
 =head1 LICENCE AND COPYRIGHT

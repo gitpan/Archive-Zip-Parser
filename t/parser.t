@@ -22,6 +22,8 @@ for ( $parser->get_entry() ) {
 is( $parser->get_entry(), 5, 'number of entries' );
 my $entry = $parser->get_entry(2);
 
+is( $entry->get_file_data(), "File: b.txt\n", 'file data' );
+
 subtest 'local file header' => sub {
     isa_ok(
         my $local_file_header = $entry->get_local_file_header(),
@@ -99,6 +101,13 @@ subtest 'local file header' => sub {
 
     done_testing();
 };
+
+my $data_descriptor = $entry->get_data_descriptor();
+if ($data_descriptor) {
+    isa_ok( $data_descriptor, 'Archive::Zip::Parser::Entry::DataDescriptor' );
+
+    done_testing();
+}
 
 subtest 'central directory' => sub {
     isa_ok(

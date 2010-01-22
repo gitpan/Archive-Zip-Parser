@@ -58,7 +58,7 @@ central directory fields.
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser::CentralDirectoryEnd version 0.0.0_02
+This document describes Archive::Zip::Parser::CentralDirectoryEnd version 0.0.0_03
 
 
 =head1 SYNOPSIS
@@ -172,6 +172,23 @@ Alan Haggai Alavi  C<< <haggai@cpan.org> >>
 
 Thanks to Shain Padmajan (L<http://shain.co.in/>) for helping me shorten method
 names.
+
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Archive::Zip::Parser>
+
+=item * L<Archive::Zip::Parser::Entry>
+
+=item * L<Archive::Zip::Parser::Entry::CentralDirectory>
+
+=item * L<Archive::Zip::Parser::Entry::DataDescriptor>
+
+=item * L<Archive::Zip::Parser::Entry::LocalFileHeader>
+
+=back
 
 
 =head1 LICENCE AND COPYRIGHT

@@ -100,7 +100,7 @@ central directory fields.
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser::Entry::CentralDirectory version 0.0.0_01
+This document describes Archive::Zip::Parser::Entry::CentralDirectory version 0.0.0_02
 
 
 =head1 SYNOPSIS
@@ -133,9 +133,9 @@ Returns a hash with keys:
 
 =over 4
 
-=item * 'attribute_information'
+=item * C<attribute_information>
 
-=item * 'specification_version'
+=item * C<specification_version>
 
 =back
 
@@ -145,9 +145,9 @@ Returns a hash with keys:
 
 =over 4
 
-=item * 'attribute_information description'
+=item * C<attribute_information description>
 
-=item * 'specification_version'
+=item * C<specification_version>
 
 =back
 
@@ -249,7 +249,7 @@ Returns a hash of extra fields:
 
 =over 4
 
-=item * 'id' => 'data'
+=item * C<< 'id' => 'data' >>
 
 =back
 
@@ -260,7 +260,7 @@ descriptions wherever possible:
 
 =over 4
 
-=item * 'id description' => 'data'
+=item * C<< 'id description' => 'data' >>
 
 =back
 

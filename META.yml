@@ -1,6 +1,6 @@
 ---
 name: Archive-Zip-Parser
-version: v0.0.0_1
+version: v0.0.0_2
 author:
   - 'Alan Haggai Alavi <haggai@cpan.org>'
 abstract: Parser for .ZIP archives
@@ -19,7 +19,7 @@ configure_requires:
 provides:
   Archive::Zip::Parser:
     file: lib/Archive/Zip/Parser.pm
-    version: v0.0.0_1
+    version: v0.0.0_2
   Archive::Zip::Parser::CentralDirectoryEnd:
     file: lib/Archive/Zip/Parser/CentralDirectoryEnd.pm
   Archive::Zip::Parser::Entry:

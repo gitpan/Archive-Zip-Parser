@@ -44,7 +44,7 @@ central directory and file data of .ZIP archive files.
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser::Entry version 0.0.0_03
+This document describes Archive::Zip::Parser::Entry version 0.0.1
 
 
 =head1 SYNOPSIS
@@ -79,7 +79,7 @@ object.
 =item C<< get_data_descriptor() >>
 
 Returns L<data descriptor|Archive::Zip::Parser::Entry::DataDescriptor>
-object.
+object. If a data descriptor does not exist, returns false.
 
 =item C<< get_file_data() >>
 

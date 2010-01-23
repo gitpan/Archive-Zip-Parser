@@ -11,11 +11,11 @@ __END__
 =head1 NAME
 
 Archive::Zip::Parser::Entry::DataDescriptor - Provides methods to access
-central directory fields.
+data descriptor fields.
 
 =head1 VERSION
 
-This document describes Archive::Zip::Parser::Entry::DataDescriptor version 0.0.0_03
+This document describes Archive::Zip::Parser::Entry::DataDescriptor version 0.0.1
 
 
 =head1 SYNOPSIS
@@ -32,7 +32,7 @@ This document describes Archive::Zip::Parser::Entry::DataDescriptor version 0.0.
 
 =head1 DESCRIPTION
 
-Provides methods to access central directory fields.
+Provides methods to access data descriptor fields.
 
 =head1 INTERFACE
 

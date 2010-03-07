@@ -2,6 +2,9 @@
 abstract: 'Parser for .ZIP archives'
 author:
   - 'Alan Haggai Alavi <haggai@cpan.org>'
+build_requires:
+  Test::Exception: 0
+  Test::More: 0
 configure_requires:
   Module::Build: 0.36
 generated_by: 'Module::Build version 0.3603'
@@ -13,7 +16,7 @@ name: Archive-Zip-Parser
 provides:
   Archive::Zip::Parser:
     file: lib/Archive/Zip/Parser.pm
-    version: v0.0.2
+    version: v0.0.3
   Archive::Zip::Parser::CentralDirectoryEnd:
     file: lib/Archive/Zip/Parser/CentralDirectoryEnd.pm
   Archive::Zip::Parser::Entry:
@@ -31,10 +34,9 @@ provides:
 requires:
   Carp: 0
   Data::ParseBinary: 0
-  Test::Exception: 0
-  Test::More: 0
   autodie: 0
   version: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: v0.0.2
+  repository: git://github.com/alanhaggai/Archive-Zip-Parser.git
+version: v0.0.3
